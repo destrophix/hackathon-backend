@@ -7,6 +7,7 @@ const {
   getHospital,
   getAllHospital,
   updateHospital,
+  deleteHospital,
 } = require("../controllers/hospitalController");
 
 router.route("/hospital/create").post(isLoggedIn, createHospital);
@@ -14,5 +15,8 @@ router.route("/hospital/:id").get(isLoggedIn, getHospital);
 router.route("/hospital/update").post(isLoggedIn, updateHospital);
 
 router.route("/hospital").get(isLoggedIn, customRole("admin"), getAllHospital);
+router
+  .route("/hospital/:id")
+  .get(isLoggedIn, customRole("admin"), deleteHospital);
 
 module.exports = router;

@@ -3,15 +3,12 @@ const BigPromise = require("../middlewares/bigPromise");
 const CustomError = require("../utils/customError");
 
 exports.createDoctor = BigPromise(async (req, res, next) => {
-  const { name, specialization, recommended, alternative } = req.body;
+  const { name, specialization, medicine } = req.body;
 
   const doctor = await Doctor.create({
     name,
     specialization,
-    medicine: {
-      recommended,
-      alternative,
-    },
+    medicine,
   });
   res.status(200).json({
     success: true,
